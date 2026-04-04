@@ -4,6 +4,7 @@ using TMPro;
 public class FlightExamManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text statusText;
+    [SerializeField] private AudioSource successAudioSource;
 
     private bool hasTakenOff = false;
     private bool threatCleared = false;
@@ -29,6 +30,9 @@ public class FlightExamManager : MonoBehaviour
         }
         threatCleared = true;
         statusText.text = "Threat cleared! Land safely.";
+
+        if (successAudioSource != null)
+            successAudioSource.Play();
     }
 
     public void SetTakeOff()
@@ -51,5 +55,11 @@ public class FlightExamManager : MonoBehaviour
         wasHit = true;
         threatCleared = false;
         statusText.text = "You got hit! Try again.";
+        Invoke("ClearHitMessage", 3f);
+    }
+
+    private void ClearHitMessage()
+    {
+        statusText.text = "";
     }
 }
