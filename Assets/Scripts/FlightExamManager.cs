@@ -8,6 +8,7 @@ public class FlightExamManager : MonoBehaviour
     private bool hasTakenOff = false;
     private bool threatCleared = false;
     private bool missionComplete = false;
+    private bool wasHit = false;
 
     void Start()
     {
@@ -21,6 +22,11 @@ public class FlightExamManager : MonoBehaviour
 
     public void ExitDangerZone()
     {
+        if (wasHit)
+        {
+            wasHit = false;
+            return;
+        }
         threatCleared = true;
         statusText.text = "Threat cleared! Land safely.";
     }
@@ -38,5 +44,12 @@ public class FlightExamManager : MonoBehaviour
     public bool HasTakenOff()
     {
         return hasTakenOff;
+    }
+
+    public void MissileHit()
+    {
+        wasHit = true;
+        threatCleared = false;
+        statusText.text = "You got hit! Try again.";
     }
 }
