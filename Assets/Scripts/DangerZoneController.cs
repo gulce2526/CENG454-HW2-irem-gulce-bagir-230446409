@@ -4,6 +4,8 @@ using System.Collections;
 public class DangerZoneController : MonoBehaviour
 {
     [SerializeField] private FlightExamManager examManager;
+    [SerializeField] private MissileLauncher missileLauncher;
+    [SerializeField] private Transform target;
     [SerializeField] private float missileDelay = 5f;
 
     private Coroutine activeCountdown;
@@ -23,12 +25,13 @@ public class DangerZoneController : MonoBehaviour
         if (activeCountdown != null)
             StopCoroutine(activeCountdown);
 
+        missileLauncher.DestroyActiveMissile();
         examManager.ExitDangerZone();
     }
 
     private IEnumerator MissileCountdown()
     {
         yield return new WaitForSeconds(missileDelay);
-        Debug.Log("Missile launching!");
+        missileLauncher.Launch(target);
     }
 }
