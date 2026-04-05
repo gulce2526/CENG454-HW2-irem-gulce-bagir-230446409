@@ -31,8 +31,6 @@ public class FlightExamManager : MonoBehaviour
         threatCleared = true;
         statusText.text = "Threat cleared! Land safely.";
 
-        if (successAudioSource != null)
-            successAudioSource.Play();
     }
 
     public void SetTakeOff()
@@ -61,5 +59,18 @@ public class FlightExamManager : MonoBehaviour
     private void ClearHitMessage()
     {
         statusText.text = "";
+    }
+    public void ShowMessage(string message)
+    {
+        statusText.text = message;
+    }
+
+    public void MissionComplete()
+    {
+        missionComplete = true;
+        statusText.text = "Mission Complete! Safe landing!";
+
+        if (successAudioSource != null)
+            successAudioSource.Play();
     }
 }
