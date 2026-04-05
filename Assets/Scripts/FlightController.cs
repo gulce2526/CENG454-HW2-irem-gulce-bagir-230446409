@@ -1,6 +1,3 @@
-// FlightController.cs
-// CENG 454 HW1: Sky-High Prototype
-// Author: Gülce [Your Last Name] | Student ID: 230446409
 
 using UnityEngine;
 
